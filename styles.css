@@ -1,0 +1,106 @@
+:root {
+    --primary-color: 255, 185, 0;
+    --secondary-color: 85, 197, 122;
+
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray: #999999;
+    --color-shadow-1: #b85b3f;
+    --color-shadow-2: #e8e3c7;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: var(--color-white);
+}
+
+.game-end-title,
+.game-end-subtitle {
+    display: none;
+    position: absolute;
+    top: 40%;
+    right: 50%;
+    transform: translateX(50%) scale(1.7);
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    text-shadow:
+        -3px -3px 0 var(--color-shadow-1),
+        3px -3px 0 var(--color-shadow-1),
+        -3px 3px 0 var(--color-shadow-1),
+        3px 3px 0 var(--color-shadow-1),
+        4px 4px 0 var(--color-shadow-2),
+        5px 5px 0 var(--color-shadow-2),
+        6px 6px 0 var(--color-shadow-2),
+        7px 7px 0 var(--color-shadow-2);
+    font-weight: bold;
+    line-height: 0.8em;
+    letter-spacing: 0.1em;
+    color: var(--color-white);
+    z-index: 100;
+    transition: all 500ms ease;
+}
+
+.game-end-subtitle {
+    top: 50%;
+    font-size: 20px;
+    text-shadow: none;
+    text-transform: capitalize;
+    background-color: var(--color-shadow-1);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.memory-game {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    perspective: 1000px;
+}
+
+.memory-card {
+    position: relative;
+    width: calc(25% - 10px);
+    height: 33.33%;
+    margin: 5px;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform 500ms ease;
+}
+
+.memory-card:active {
+    transform: scale(.97);
+    transition: transform 400ms ease;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+.front-face,
+.back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgba(var(--primary-color), .6);
+    backface-visibility: hidden;
+    box-shadow: 1px 1px 1px var(--color-gray);
+    cursor: pointer;
+}
+
+.front-face {
+    background-color: rgba(var(--secondary-color), .6);
+    transform: rotateY(180deg);
+}
